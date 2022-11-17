@@ -49,6 +49,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 認証
 gem 'devise_token_auth', '~> 1.1', '>= 1.1.5'
 
+# .env
+gem 'dotenv-rails'
+
+# cors measures
+gem 'rack-cors'
+
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
