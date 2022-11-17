@@ -5,6 +5,7 @@
 #  id                 :integer          not null, primary key
 #  email              :string
 #  encrypted_password :string           default(""), not null
+#  image              :string
 #  name               :string
 #  provider           :string           default("email"), not null
 #  tokens             :json
