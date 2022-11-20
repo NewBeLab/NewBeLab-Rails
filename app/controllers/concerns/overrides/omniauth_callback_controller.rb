@@ -1,5 +1,5 @@
 module Overrides
-  class OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallbacksController
+  class OmniauthCallbackController < DeviseTokenAuth::OmniauthCallbackController
     def omniauth_success
       super
       @resource.update(nickname: @resource.name) if @resource.nickname.nil?
