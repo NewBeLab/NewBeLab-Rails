@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         resources :sessions, only: %i[index]
       end
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-        omniauth_callbacks: 'api/v1/auth/omniauth_callbacks'
+        omniauth_callbacks: 'overrides/omniauth_callbacks'
       }
     end
   end
