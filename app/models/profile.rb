@@ -3,12 +3,12 @@
 # Table name: profiles
 #
 #  id                :integer          not null, primary key
-#  commitment        :string           not null
+#  commitment        :string
 #  editor            :string
-#  grade             :integer          not null
-#  motivation        :string           not null
-#  phase             :string           not null
-#  position          :string           not null
+#  grade             :integer
+#  motivation        :string
+#  phase             :string
+#  position          :string
 #  self_introduction :text
 #  times_link        :string
 #  created_at        :datetime         not null
@@ -28,13 +28,13 @@ class Profile < ApplicationRecord
   belongs_to :user
 
   validates :times_link, length: { maximum: 100 },
-                         format: { with: /\A(https\:\/\/chat\.runteq\.jp\/runteq\/channels) }
-  validates :commitment, presence: true
-  validates :position, presence: true
-  validates :motivation, presence: true
+                         format: { with: /\A(https\:\/\/chat\.runteq\.jp\/runteq\/channels\/)+([A-Za-z0-9_]*)/ }
+  validates :commitment
+  validates :position
+  validates :motivation
   validates :self_introduction, length: { maximum: 100 }
-  validates :phase, presence: true
-  validates :grade, presence: true
+  validates :phase
+  validates :grade
   validates :editor
   validates :user_id, presence: true
 end

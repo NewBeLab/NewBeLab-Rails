@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_23_013719) do
+ActiveRecord::Schema.define(version: 2022_11_23_040006) do
 
   create_table "profiles", force: :cascade do |t|
     t.string "times_link"
-    t.string "commitment", null: false
-    t.string "position", null: false
-    t.string "motivation", null: false
+    t.string "commitment"
+    t.string "position"
+    t.string "motivation"
     t.text "self_introduction"
-    t.string "phase", null: false
-    t.integer "grade", null: false
+    t.string "phase"
+    t.integer "grade"
     t.string "editor"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
