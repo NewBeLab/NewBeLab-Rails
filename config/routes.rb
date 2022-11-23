@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         omniauth_callback: 'overrides/omniauth_callback'
       }
 
-      resources :profiles, only: %i[index]
+      resources :profiles, only: %i[index show edit update]
     end
   end
 end
