@@ -29,12 +29,6 @@ class Profile < ApplicationRecord
 
   validates :times_link, length: { maximum: 100 },
                          format: { with: /\A(https\:\/\/chat\.runteq\.jp\/runteq\/channels\/)+([A-Za-z0-9_]*)/ }
-  validates :commitment
-  validates :position
-  validates :motivation
   validates :self_introduction, length: { maximum: 100 }
-  validates :phase
-  validates :grade
-  validates :editor
   validates :user_id, presence: true
 end
