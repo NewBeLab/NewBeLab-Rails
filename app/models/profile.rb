@@ -27,9 +27,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
-  validates :times_link, length: { maximum: 100 },
-                         format: { with: /\A(https\:\/\/chat\.runteq\.jp\/runteq\/channels\/)+([A-Za-z0-9_]*)/ },
-                         allow_nil: true
+  validates :times_link, length: { maximum: 50 }
   validates :self_introduction, length: { maximum: 100 }
   validates :user_id, presence: true
 end
