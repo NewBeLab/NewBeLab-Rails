@@ -8,6 +8,7 @@ class Api::V1::ProfilesController < ApplicationController
   end
 
   def show
+    @profile ||= Profile.create!(user_id: current_api_v1_user.id)
     render json: @profile
   end
 
