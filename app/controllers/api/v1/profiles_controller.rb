@@ -1,6 +1,6 @@
 class Api::V1::ProfilesController < ApplicationController
   before_action :authenticate_api_v1_user!
-  before_action :set_profile, only: %i[show edit update]
+  before_action :set_profile, only: %i[show update]
 
   def index
     @profiles = Profile.all.includes(:user)
@@ -9,10 +9,6 @@ class Api::V1::ProfilesController < ApplicationController
 
   def show
     @profile ||= Profile.create!(user_id: current_api_v1_user.id)
-    render json: @profile
-  end
-
-  def edit
     render json: @profile
   end
 
