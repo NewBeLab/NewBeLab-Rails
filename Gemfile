@@ -30,6 +30,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'bullet'
   gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :development do
