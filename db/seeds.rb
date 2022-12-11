@@ -26,6 +26,7 @@ users = User.pluck(:id)
 users.each do |user|
   profile = Profile.new(
     times_link: Faker::Games::Pokemon.name,
+    commitment: Faker::Lorem.word,
     position: Faker::Lorem.word,
     motivation: Faker::Lorem.word,
     self_introduction: Faker::Lorem.paragraph,
