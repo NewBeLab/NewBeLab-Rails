@@ -36,9 +36,6 @@ COPY Gemfile.lock /$APP_NAME/Gemfile.lock
 
 RUN bundle install
 
-COPY yarn.lock /$APP_NAME/yarn.lock
-COPY package.json /$APP_NAME/package.json
-
 COPY . /$APP_NAME/
 
 RUN SECRET_KEY_BASE="$(bundle exec rake secret)" bin/rails assets:precompile assets:clean \
