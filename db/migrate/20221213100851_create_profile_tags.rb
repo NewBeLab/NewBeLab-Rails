@@ -6,5 +6,6 @@ class CreateProfileTags < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :profile_tags, [:profile_id, :tag_id], unique: true
   end
 end

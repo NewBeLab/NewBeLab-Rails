@@ -10,8 +10,9 @@
 #
 # Indexes
 #
-#  index_profile_tags_on_profile_id  (profile_id)
-#  index_profile_tags_on_tag_id      (tag_id)
+#  index_profile_tags_on_profile_id             (profile_id)
+#  index_profile_tags_on_profile_id_and_tag_id  (profile_id,tag_id) UNIQUE
+#  index_profile_tags_on_tag_id                 (tag_id)
 #
 # Foreign Keys
 #
