@@ -26,6 +26,8 @@
 #
 class Profile < ApplicationRecord
   belongs_to :user
+  has_many :profile_tags, dependent: :destroy
+  has_many :tags, through: :profile_tags
 
   validates :times_link, length: { maximum: 50 }
   validates :self_introduction, length: { maximum: 100 }

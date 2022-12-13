@@ -26,8 +26,6 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   has_one :profile, dependent: :destroy
-  has_many :user_tags, dependent: :destroy
-  has_many :tags, through: :user_tags
   
   validates :uid, presence: true, uniqueness: { scope: :provider }
 end
