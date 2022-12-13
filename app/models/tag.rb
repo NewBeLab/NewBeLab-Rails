@@ -8,8 +8,8 @@
 #  updated_at :datetime         not null
 #
 class Tag < ApplicationRecord
-  has_many :user_tags, dependent: :destroy
-  has_many :users, through: :user_tags
+  has_many :profile_tags, dependent: :destroy
+  has_many :profiles, through: :profile_tags
 
   validates :name, uniqueness: true
 end
