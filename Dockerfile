@@ -2,12 +2,15 @@
 ARG APP_NAME=NewBeLab-Rails
 #使いたいrubyのimage名に置き換えてください
 ARG RUBY_IMAGE=ruby:3.1.2
+#使いたいnodeのversionに置き換えてください(`15.14.0`ではなく`15`とか`16`とかのメジャーバージョン形式で書いてください)
+ARG NODE_VERSION='16'
 #インストールするbundlerのversionに置き換えてください
 ARG BUNDLER_VERSION=2.3.16
 
 FROM $RUBY_IMAGE
 ARG APP_NAME
 ARG RUBY_VERSION
+ARG NODE_VERSION
 ARG BUNDLER_VERSION
 
 ENV RAILS_ENV production
@@ -20,7 +23,11 @@ RUN mkdir /$APP_NAME
 WORKDIR /$APP_NAME
 
 # 別途インストールが必要なものがある場合は追加してください
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
+  && wget --quiet -O - /tmp/pubkey.gpg https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update -qq \
+  && apt-get install -y build-essential nodejs yarn
 
 RUN gem install bundler:$BUNDLER_VERSION
 
