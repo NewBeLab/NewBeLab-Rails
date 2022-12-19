@@ -13,6 +13,7 @@ class Api::V1::ProfilesController < ApplicationController
   end
 
   def update
+    @profile.assign_attributes(profile_params)
     if @profile.save_with_tags(name: params.dig(:profile, :name).split(',').uniq)
       render json: @profile
     else
