@@ -13,16 +13,12 @@ class Api::V1::ProfilesController < ApplicationController
   end
 
   def update
-    @tag_list = params[:profile][:name].split(',')
-    if @profile.update(profile_params)
-      @profile.save_tag(@tag_list)
+    @profile = current_user.build_profile(prifile_params)
+    if @profile.save_with_tags(name: params.dig(:profile, :name).split(',').uniq)
       render json: @profile
     else
-      @tag_list = params[:profile][:name]
-      render json: @tag_list 
       render json: @profile.errors, status: :bad_request
     end
-  end
 
   private
 

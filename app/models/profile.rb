@@ -7,20 +7,13 @@ class Profile < ApplicationRecord
   validates :self_introduction, length: { maximum: 100 }
   validates :user_id, presence: true
 
-  def save_tag(sent_tags)
-    current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    byebug
-    old_tags = current_tags - sent_tags
-    new_tags = sent_tags - current_tags
-
-
-    old_tags.each do |old|
-      self.tags.delete(Tag.find_by(name: old))
+  def save_with_tags(name:)
+    ActiveRecord::Base.transaction do
+      self.tags = name.map { |name| Tag.find_or_initialize_by(name: name.strip) }
+      save!
     end
-
-    new_tags.each do |new|
-      new_post_tag = Tag.find_or_create_by(name: new)
-      self.tags << new_post_tag
+      true
+    rescue StandardError
+      false
     end
-  end
 end
