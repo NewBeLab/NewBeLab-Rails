@@ -19,6 +19,7 @@ class Api::V1::ProfilesController < ApplicationController
     else
       render json: @profile.errors, status: :bad_request
     end
+  end
 
   private
 

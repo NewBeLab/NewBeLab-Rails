@@ -12,8 +12,8 @@ class Profile < ApplicationRecord
       self.tags = name.map { |name| Tag.find_or_initialize_by(name: name.strip) }
       save!
     end
-      true
-    rescue StandardError
-      false
-    end
+    true
+  rescue StandardError
+    false
+  end
 end
