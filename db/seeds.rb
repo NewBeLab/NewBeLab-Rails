@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # UserとProfileのテストデータを10件作成する
-10.times do |n|
+30.times do |_n|
   User.create!(
     provider: 'gihub',
     uid: Faker::Number.number(digits: 8),
@@ -21,18 +21,25 @@ end
 # 作成したUserのidを取得
 users = User.pluck(:id)
 
-# 作成したUserのidを使ってProfileを作成する
+commitment = ['週1回', '週2〜3回', '週4〜5回', '毎日', '']
+position = ['バックエンド', 'フロントエンド', 'レビュー', 'アドバイザー', '希望なし', '']
+motivation = ['ガチで作成したい', 'ゆるく楽しく作成したい', 'サポートしたい', '']
+self_introduction = ['こんにちは', 'よろしくお願いします', 'がんばっていきます所存でございます,よろしくオコンニチハ', '']
+phase = ['カリキュラム中', 'PF作成中', '就活中', '現役エンジニア', '']
+grade = ['1', '10', '20', '30', '40', '']
+editor = ['Visual Studio Code', 'Atom', 'Vim', 'NoEditor', 'Sublime Text', '']
 
+# 作成したUserのidを使ってProfileを作成する
 users.each do |user|
   profile = Profile.new(
-    times_link: Faker::Games::Pokemon.name,
-    commitment: Faker::Lorem.word,
-    position: Faker::Lorem.word,
-    motivation: Faker::Lorem.word,
-    self_introduction: Faker::Lorem.paragraph,
-    phase: Faker::Lorem.word,
-    grade: Faker::Number.between(from: 1, to: 40),
-    editor: 'vim',
+    times_link: AFaker::Games::Pokemon.name,
+    commitment: commitment.sample,
+    position: position.sample,
+    motivation: motivation.sample,
+    self_introduction: self_introduction.sample,
+    phase: phase.sample,
+    grade: grade.sample,
+    editor: editor.sample,
     user_id: user
   )
   profile.save
