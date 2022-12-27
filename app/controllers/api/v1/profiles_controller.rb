@@ -1,5 +1,5 @@
 class Api::V1::ProfilesController < ApplicationController
-  
+  before_action :authenticate_api_v1_user!
   before_action :set_profile, only: %i[show update]
 
   def index
