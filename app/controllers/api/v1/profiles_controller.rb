@@ -12,12 +12,12 @@ class Api::V1::ProfilesController < ApplicationController
 
   def show
     @profile ||= Profile.create!(user_id: current_api_v1_user.id)
-    render json: @profile
+    render json: { profile: @profile, tags: @profile.tags }
   end
 
   def update
     @profile.assign_attributes(profile_params)
-    if @profile.save_with_tags(name: params.dig(:profile, :name).split(',').uniq)
+    if @profile.save_with_tags(name: params.dig(:profile, :tags).split(',').uniq)
       render json: @profile
     else
       render json: @profile.errors, status: :bad_request

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         omniauth_callbacks: 'api/v1/auth/omniauth_callbacks'
       }
       resources :profiles, only: %i[index show update], params: :user_id
+      resources :tags, only: :index
       namespace :auth do
         resources :sessions, only: %i[index]
       end
