@@ -32,7 +32,7 @@ editor = ['Visual Studio Code', 'Atom', 'Vim', 'NoEditor', 'Sublime Text', '']
 # 作成したUserのidを使ってProfileを作成する
 users.each do |user|
   profile = Profile.new(
-    times_link: AFaker::Games::Pokemon.name,
+    times_link: Faker::Games::Pokemon.name,
     commitment: commitment.sample,
     position: position.sample,
     motivation: motivation.sample,
@@ -40,7 +40,19 @@ users.each do |user|
     phase: phase.sample,
     grade: grade.sample,
     editor: editor.sample,
-    user_id: user
+    user_id: user,
   )
   profile.save
+end
+
+# tagsを作成し、Profileと紐付ける
+tags = ['HTML', 'CSS', 'Ruby', 'Ruby on Rails', 'JavaScript', 'jQuery', 'Vue.js', 'React', 'Python', 'Django', 'PHP', 'Laravel', 'Swift', 'Java', 'C#', 'C++', 'Go', 'SQL', 'MySQL', 'PostgreSQL', 'MongoDB', 'AWS', 'Docker', 'Linux']
+
+tags.each do |tag|
+  Tag.create!(name: tag)
+end
+
+# ProfileとTagを紐付ける
+Profile.all.each do |profile|
+  profile.tags << Tag.all.sample(rand(1..3))
 end
