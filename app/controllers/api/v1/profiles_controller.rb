@@ -5,7 +5,7 @@ class Api::V1::ProfilesController < ApplicationController
   def index
     @profiles = Profile.all.includes(:user)
     @user_profiles = @profiles.map do |profile|
-      {profile: profile, name: profile.user.name, image: profile.user.image}
+      {profile: profile, name: profile.user.name, image: profile.user.image, tags: profile.tags}
     end
     render json: @user_profiles
   end
