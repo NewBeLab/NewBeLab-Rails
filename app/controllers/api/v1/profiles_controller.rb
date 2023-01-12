@@ -7,7 +7,17 @@ class Api::V1::ProfilesController < ApplicationController
     @user_profiles = @profiles.map do |profile|
       {profile: profile, name: profile.user.name, image: profile.user.image}
     end
-    render json: @user_profiles
+
+    page = params[:page] || 1
+    per = params[:per] || 10
+    view_profiles = Kaminari.paginate_array(@user_profiles).page(page).per(per)
+    total_pages = view_profiles.total_pages
+
+    response = {
+      profiles: view_profiles,
+      total_pages: total_pages
+    }
+    render json: response
   end
 
   def show
