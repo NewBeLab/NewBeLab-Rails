@@ -65,3 +65,5 @@ gem 'rack-cors'
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+
+gem 'kaminari'
