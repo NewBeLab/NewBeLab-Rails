@@ -3,14 +3,14 @@ class Api::V1::ProfilesController < ApplicationController
   before_action :set_profile, only: %i[show update]
 
   def index
-    @profiles = Profile.all.includes(:user)
-    @user_profiles = @profiles.map do |profile|
+    profiles = Profile.all.includes(:user)
+    user_profiles = profiles.map do |profile|
       {profile: profile, name: profile.user.name, image: profile.user.image}
     end
 
     page = params[:page] || 1
     per = params[:per] || 10
-    view_profiles = Kaminari.paginate_array(@user_profiles).page(page).per(per)
+    view_profiles = Kaminari.paginate_array(user_profiles).page(page).per(per)
     total_pages = view_profiles.total_pages
 
     response = {
