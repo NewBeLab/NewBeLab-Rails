@@ -1,11 +1,12 @@
 class Api::V1::ProfilesController < ApplicationController
-  before_action :authenticate_api_v1_user!
+  # before_action :authenticate_api_v1_user!
   before_action :set_profile, only: %i[show update]
 
   def index
+    binding.pry
     profiles = Profile.all.includes(:user)
     user_profiles = profiles.map do |profile|
-      {profile: profile, name: profile.user.name, image: profile.user.image}
+      {profile: profile, name: profile.user.name, username: profile.user.username, image: profile.user.image}
     end
 
     page = params[:page] || 1
