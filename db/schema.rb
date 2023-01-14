@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_13_100851) do
+ActiveRecord::Schema.define(version: 2023_01_14_012107) do
 
   create_table "profile_tags", force: :cascade do |t|
     t.integer "profile_id", null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2022_12_13_100851) do
     t.json "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
