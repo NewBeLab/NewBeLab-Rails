@@ -27,4 +27,3 @@ production:
   username: clbm5bopa0013bequarxq5g1z
   password: <%= ENV['NEWBELAB_DATABASE_PASSWORD'] %>
   url: <%= ENV['DATABASE_URL'] %>
-  port: 5432
