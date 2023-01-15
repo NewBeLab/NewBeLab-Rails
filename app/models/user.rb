@@ -10,6 +10,7 @@
 #  provider           :string           default("email"), not null
 #  tokens             :json
 #  uid                :string           default(""), not null
+#  username           :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

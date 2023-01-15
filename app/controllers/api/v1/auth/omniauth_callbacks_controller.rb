@@ -11,6 +11,7 @@ skip_before_action :skip_session
     when 'github'
       user.assign_attributes({
                                name: auth_hash['info']['name'],
+                               username: auth_hash['info']['nickname'],
                                image: auth_hash['info']['image'],
                                email: auth_hash['info']['email']
                              })

@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'http://localhost:8080'
+    origins 'https://new-be-lab.magia.runteq.jp'
 
     resource '*',
       headers: :any,
