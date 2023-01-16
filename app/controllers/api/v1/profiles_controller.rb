@@ -38,12 +38,12 @@ class Api::V1::ProfilesController < ApplicationController
   private
 
   def set_q
-    @q = Profile.ransack(params[:q])
+    @q = Profile.ransack(search_params)
   end
 
-  #def search_params
-    #params.require(:q).permit(:commitment_cont, :position_cont, :motivation_cont, :phase_cont, :editor_cont, :times_link_cont)
-  #end
+  def search_params
+    params.require(:q).permit(:commitment_cont, :position_cont, :motivation_cont, :phase_cont, :editor_cont, :times_link_cont)
+  end
 
   def set_profile
     @profile = Profile.find_by(user_id: current_api_v1_user.id)
