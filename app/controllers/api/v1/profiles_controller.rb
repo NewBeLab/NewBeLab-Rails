@@ -1,9 +1,10 @@
 class Api::V1::ProfilesController < ApplicationController
   before_action :authenticate_api_v1_user!
   before_action :set_profile, only: %i[show update]
+  before_action :set_q, only: %i[index]
 
   def index
-    profiles = Profile.all.includes(:user)
+    profiles = @q.result(distinct: true).all.includes(:user)
     user_profiles = profiles.map do |profile|
       {profile: profile, name: profile.user.name, username: profile.user.username, image: profile.user.image, tags: profile.tags}
     end
@@ -35,6 +36,14 @@ class Api::V1::ProfilesController < ApplicationController
   end
 
   private
+
+  def set_q
+    @q = Profile.ransack(search_params)
+  end
+
+  def search_params
+    params.require(:q).permit(:commitment_cont, :position_cont, :motivation_cont, :phase_cont, :editor_cont, :times_link_cont)
+  end
 
   def set_profile
     @profile = Profile.find_by(user_id: current_api_v1_user.id)
