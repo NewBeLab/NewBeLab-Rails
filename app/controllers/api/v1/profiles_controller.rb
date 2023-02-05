@@ -42,7 +42,7 @@ class Api::V1::ProfilesController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit(:commitment_cont, :position_cont, :motivation_cont, :phase_cont, :editor_cont, :times_link_cont)
+    params.require(:q).permit(:commitment_cont, :position_cont, :motivation_cont, :phase_cont)
   end
 
   def set_profile
